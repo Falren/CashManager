@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    title CashManager
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+  body
+    nav.navbar.navbar-light
+      = link_to "CashManager", root_path, class: "nav-logo text-info"
+      -if current_user 
+        = link_to 'Log Out', destroy_user_session_path, method: :delete, class: "btn btn-outline-danger"
+      -else
+        .btn-group
+          = link_to 'Sign in', new_user_session_path, class: "btn btn-outline-info"
+          = link_to 'Sign up', new_user_registration_path, class: "btn btn-outline-info"
+    = yield
+
