@@ -3,5 +3,5 @@ Rails.application.routes.draw do
   resources :companies
   resources :articles
   resources :transactions
-  root 'home#index'
+  root 'companies#index'
 end

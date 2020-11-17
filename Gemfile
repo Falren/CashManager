@@ -24,8 +24,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootstrap'
 gem 'devise'
 gem 'react-rails'
+gem 'currency_select'
 gem 'slim'
-
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

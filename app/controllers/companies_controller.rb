@@ -1,45 +1,50 @@
 class CompaniesController < ApplicationController
-  
+  before_action :set_company, only: [:show, :edit, :update, :destroy]
+
   def index
     @companies = Company.all
   end
   
-  def show
-    @company = Company.find(params[:id])
-  end
+  def show; end
 
   def new
-    @company = Company.new
+    @company = current_user.companies.new
   end
+
+  def edit; end
 
   def create
-    @company = Company.new(company_params)
+    @company = current_user.companies.new(company_params)
     if @company.save
-      redirect_to company_path(@company[:id])
-    else 
-      render 'new'
+      redirect_to companies_path, notice: t('.success')
+    else
+      render :new
     end
-  end
-
-  def edit
-    @company = Company.find(params[:id])
   end
 
   def update
-    @company = Company.find(params[:id])
     if @company.update(company_params)
-      redirect_to company_path(@company[:id])
-    else 
-      render 'edit'
+      redirect_to @company, notice: t('.success')
+    else
+      render :edit
     end
   end
-  
-  def delete
-    @company = Company.find(params[:id])
-    if @company.delete
-      redirect_to root_path
-    else
-      render 'show'
+
+  def destroy
+    if @company.destroy
+      redirect_to companies_path, notice: t('.success')
+    else 
+      render :show
     end
+  end
+
+  private
+
+  def set_company
+    @company = current_user.companies.find(params[:id])
+  end
+
+  def company_params
+    params.require(:company).permit(:name, :country, :currency, :money)
   end
 end

@@ -1,0 +1,21 @@
+div
+  | Info:
+div 
+  | Name: 
+  = @company.name
+div
+  | Owner: 
+  = current_user.name
+div
+  | Currency: 
+  = @company.currency 
+
+
+
+-if notice 
+  #notice = notice
+= link_to 'Delete', company_path(@company), method: :delete
+br/
+= link_to 'Edit', edit_company_path(@company)
+br/
+= link_to 'Back', companies_path
