@@ -1,20 +1,17 @@
 class CompaniesController < ApplicationController
-  before_action :set_company, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_company, only: %i[show edit update destroy]
+  before_action :inialitize_company, only: %i[new create]
   def index
     @companies = Company.all
   end
   
   def show; end
 
-  def new
-    @company = current_user.companies.new
-  end
+  def new; end
 
   def edit; end
 
   def create
-    @company = current_user.companies.new(company_params)
     if @company.save
       redirect_to companies_path, notice: t('.success')
     else
@@ -42,6 +39,10 @@ class CompaniesController < ApplicationController
 
   def set_company
     @company = current_user.companies.find(params[:id])
+  end
+
+  def inialitize_company
+    @company = params[:action] == 'new' ? current_user.companies.new : current_user.companies.new(company_params)
   end
 
   def company_params

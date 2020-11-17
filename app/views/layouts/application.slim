@@ -11,7 +11,9 @@ html
     nav.navbar.navbar-light
       = link_to "CashManager", root_path, class: "nav-logo text-info"
       -if current_user 
-        = link_to '+ Article', '#', class: "btn btn-info"
+        .btn-group
+          = link_to '+ Article', new_article_path, class: "btn btn-info"
+          = link_to 'Manage Articles', articles_path, class: "btn btn-info"
         = link_to 'Log Out', destroy_user_session_path, method: :delete, class: "btn btn-outline-danger"
       -else
         .btn-group

@@ -26,6 +26,7 @@ gem 'devise'
 gem 'react-rails'
 gem 'currency_select'
 gem 'slim'
+gem 'pry'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
