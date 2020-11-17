@@ -4,26 +4,30 @@
       = render "devise/shared/error_messages", resource: resource
       .row
         .col
-          = f.label :name
+          = f.label :name, "*Name"
           = f.text_field :name, class: "form-control input-sm"
         .col
-          = f.label :surname
+          = f.label :surname, "*Surname"
           = f.text_field :surname, class: "form-control input-sm"
       .form-group
-        = f.label :email
+        = f.label :email, "*Email"
         br/
         = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control input-sm"
+      .row
+        .col
+          = f.label :password, "*Password"
+          - if @minimum_password_length
+            em
+              | (#{@minimum_password_length} characters minimum)
+          br/
+          = f.password_field :password, autocomplete: "new-password", class: "form-control input-sm"
+        .col
+          = f.label :password_confirmation
+          br/
+          = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control input-sm"
+          br/
       .form-group
-        = f.label :password
-        - if @minimum_password_length
-          em
-            | (#{@minimum_password_length} characters minimum)
-        br/
-        = f.password_field :password, autocomplete: "new-password", class: "form-control input-sm"
-      .form-group
-        = f.label :password_confirmation
-        br/
-        = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control input-sm"
+        =f.file_field :photo, class: "form-control-file"
       .form-group
         .input-group.mb-3
           .input-group-prepend
@@ -31,4 +35,7 @@
           = f.select( :status, (User.statuses.map { |k, _| [k.titleize, k] }), {} ,{class: 'form-control'})
       .actions
         = f.submit "SIGN UP", class: "btn btn-info btn-block"
+        br/
+        .or
+          span OR
     = render "devise/shared/links"
