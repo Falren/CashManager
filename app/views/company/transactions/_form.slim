@@ -1,0 +1,31 @@
+= form_for([@company, @transaction]) do |f|
+  - if @transaction.errors.any?
+    #error_explanation
+      h2
+        = pluralize(@transaction.errors.count, "error")
+        | prohibited this company from being saved:
+      ul
+        - @transaction.errors.full_messages.each do |message|
+          li= message
+  .form-froup
+    = f.label :amount, "*Amount"
+    = f.number_field :amount, class: "form-control input-sm"
+    br/
+  .row
+    .col
+      .input-group.mb-3
+        .input-group-prepend
+          = f.label :transaction_time, class: "input-group-text"
+        =f.date_field :transaction_time
+    .col
+      .input-group.mb-3
+        .input-group-prepend
+          = f.label :article_id, "Article", class: "input-group-text"
+        = f.select( :article_id, (@articles.map { |k, v| [k.name, k.id] }), {} ,{class: 'form-control'})
+  .form-group
+    .input-group.mb-3
+      .input-group-prepend
+        = f.label :status, "Type", class: "input-group-text"
+      = f.select( :status, (Transaction.statuses.map { |k, _| [k.titleize, k] }), {} ,{class: 'form-control'})
+  .actions
+    = f.submit "Create", class: "btn btn-info btn-block"
