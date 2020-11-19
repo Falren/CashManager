@@ -1,2 +1,39 @@
-
+- cash_in = @report_data.in.group_by(&:month)&.inject({}) { |h, (k, v)| h[k] = v.sum(&:total); h }
+- cash_out = @report_data.out&.group_by(&:month)&.inject({}) { |h, (k, v)| h[k] = v.sum(&:total); h }
+- company_cash = @company.money
+.content-container
+  .form-container
+    h1
+      | Company 
+      =@company.name
+    table
+      tr
+        th Cash management
+      tr
+        td current year 
+        -I18n.t("date.abbr_month_names")[1..12].each do |month|
+          td = month
+      tr 
+        td Cash In
+        - 1.upto(12) do |m|
+          td=cash_in[m] && cash_in[m]
+      -@report_data.in&.each do |transaction| 
+        =render 'cash', transaction: transaction
+      tr
+        td Cash Out
+        - 1.upto(12) do |m|
+          td=cash_out && cash_out[m]
+      -@report_data.out&.each do |transaction| 
+        =render 'cash', transaction: transaction
+      tr
+        td Cash End
+        - 1.upto(12) do |m|
+            - if cash_in[m].blank? && cash_out[m].blank?
+              td = company_cash
+            - elsif cash_in[m].blank?
+              td = company_cash - cash_out[m] 
+            - elsif cash_out[m].blank?
+              td = company_cash + cash_in[m]
+            - elsif cash_in[m].present? || cash_out.present?
+              td = (company_cash + cash_in[m]) - cash_out[m] 
 
