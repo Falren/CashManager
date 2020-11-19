@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :companies do
     scope module: "company" do
       resources :transactions
+      resources :reports, only: :index
     end
   end
   resources :articles

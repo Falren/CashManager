@@ -1,0 +1,1 @@
+module Company::ReportHelper; end
