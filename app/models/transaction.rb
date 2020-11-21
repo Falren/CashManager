@@ -1,8 +1,10 @@
 class Transaction < ApplicationRecord
   enum status: %i[in out]
-  validates :amount, presence: true
   belongs_to :company
   belongs_to :article
+  
+  validates :amount, presence: true
+  validates :transaction_time, presence: true
 
   scope :report_by_year, lambda { |year|
     joins(:article)

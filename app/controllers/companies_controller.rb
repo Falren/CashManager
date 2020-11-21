@@ -1,8 +1,10 @@
 class CompaniesController < ApplicationController
+
   before_action :set_company, only: %i[show edit update destroy]
   before_action :inialitize_company, only: %i[new create]
+
   def index
-    @companies = Company.all
+    @companies = current_user.companies.all if current_user 
   end
   
   def show; end
@@ -41,7 +43,7 @@ class CompaniesController < ApplicationController
     @company = current_user.companies.find(params[:id])
   end
 
-  def inialitize_company
+  def company
     @company = params[:action] == 'new' ? current_user.companies.new : current_user.companies.new(company_params)
   end
 
