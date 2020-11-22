@@ -5,6 +5,7 @@ class Transaction < ApplicationRecord
   
   validates :amount, presence: true
   validates :transaction_time, presence: true
+  validate :year_of_transaction, on: :create
 
   scope :report_by_year, lambda { |year|
     joins(:article)
@@ -12,4 +13,10 @@ class Transaction < ApplicationRecord
       .where('EXTRACT(YEAR FROM transaction_time)::integer = ?', year)
       .group("status, articles.name, month")
   } 
+
+  private 
+
+  def year_of_transaction
+    errors.add(:transaction_time, 'Transactions can be made only in two-years period') if transaction_time.year >= Time.now.year + 3
+  end
 end

@@ -6,12 +6,9 @@ class ArticlesController < ApplicationController
     @articles = Article.all
   end
 
-  def new 
-    @article = Article.new
-  end
+  def new; end
 
   def create
-    @article = Article.new(article_params)
     if @article.save
       redirect_to root_path
     else 
