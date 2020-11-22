@@ -22,11 +22,11 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap'
-gem 'devise'
-gem 'react-rails'
 gem 'currency_select'
-gem 'slim'
+gem 'devise'
 gem 'pry'
+gem 'react-rails'
+gem 'slim'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -37,6 +37,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'factory_bot_rails'
+  gem 'faker'
   gem 'rspec-rails'
 end
 
