@@ -17,6 +17,6 @@ class Transaction < ApplicationRecord
   private 
 
   def year_of_transaction
-    errors.add(:transaction_time, 'Transactions can be made only in two-years period') if transaction_time.year >= Time.now.year + 3
+    errors.add(:transaction_time, 'Transactions can be made only in two-years period') if transaction_time >= 2.years.from_now
   end
 end

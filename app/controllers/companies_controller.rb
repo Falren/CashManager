@@ -1,7 +1,6 @@
 class CompaniesController < ApplicationController
 
   before_action :set_company, only: %i[show edit update destroy]
-  before_action :inialitize_company, only: %i[new create]
 
   def index
     @companies = current_user.companies.all if current_user 
@@ -14,7 +13,7 @@ class CompaniesController < ApplicationController
   def edit; end
 
   def create
-    if @company.save
+    if company.save
       redirect_to companies_path, notice: t('.success')
     else
       render :new
@@ -22,8 +21,8 @@ class CompaniesController < ApplicationController
   end
 
   def update
-    if @company.update(company_params)
-      redirect_to @company, notice: t('.success')
+    if company.update(company_params)
+      redirect_to company, notice: t('.success')
     else
       render :edit
     end
@@ -44,7 +43,7 @@ class CompaniesController < ApplicationController
   end
 
   def company
-    @company = params[:action] == 'new' ? current_user.companies.new : current_user.companies.new(company_params)
+    @company ||= params[:action] == 'new' ? current_user.companies.new : current_user.companies.new(company_params)
   end
 
   def company_params

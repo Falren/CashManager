@@ -1,10 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  let(:user) { build(:user) }
   context 'validation tests' do
-    let(:user) { build(:user) }
-    it 'creates user' do
-      expect(user.save).to eq(true)
+    describe 'user create' do
+      subject {user.save } 
+      it { is_expected.to eq(true) }
     end
     it 'validates presence of name' do
       user.name = nil
@@ -24,6 +25,7 @@ RSpec.describe User, type: :model do
       expect(user.save).to eq(false)
     end
   end
+
   describe 'User has many companies' do 
     it { expect(User.reflect_on_association(:companies).macro).to eq(:has_many) }
   end
