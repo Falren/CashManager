@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 class Company::TransactionsController < ApplicationController
   before_action :set_company
   before_action :set_articles, only: %i[new create]
+  
   def index
     @transactions = @company.transactions
   end

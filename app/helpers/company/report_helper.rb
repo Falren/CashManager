@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Company::ReportHelper
   def monthly_cash
     @monthly_cash ||= begin
@@ -9,16 +11,10 @@ module Company::ReportHelper
   def initial_cash(year)
     @initial_cash ||= begin
       return @company.money if @company.created_at.year == year
-
       previous_year = Time.new(year.to_i - 1)
-      sum_in = @company
-               .transactions
-               .where(transaction_time: @company.created_at.beginning_of_year...previous_year.end_of_year)
-               .in.sum(&:amount)
-      sum_out = @company
-                .transactions
-                .where(transaction_time: @company.created_at.beginning_of_year...previous_year.end_of_year)
-                .out.sum(&:amount)
+      transaction_time_range = @company.transactions.where(transaction_time: @company.created_at.beginning_of_year...previous_year.end_of_year)
+      sum_in = transaction_time_range.in.sum(&:amount)
+      sum_out = transaction_time_range.out.sum(&:amount)
       company_cash + (sum_in - sum_out)
     end
   end
@@ -36,7 +32,7 @@ module Company::ReportHelper
   end
 
   def cash_by_type(type)
-    @report_data.send(type).group_by(&:name).each_with_object({}) { |(gr, tra), h| h[gr] = tra.group_by(&:month); }
+    @report_data.send(type).group_by(&:name).transform_values { |tra| tra.group_by(&:month); }
   end
 
   def reports_by_year
