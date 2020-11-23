@@ -28,6 +28,7 @@ gem 'currency_select'
 gem 'devise'
 gem 'pry'
 gem 'react-rails'
+gem 'rubocop'
 gem 'slim'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

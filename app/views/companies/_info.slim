@@ -1,0 +1,14 @@
+ul.list-group
+  li.list-group-item.list-group-item-info Company Info
+  li.list-group-item 
+    | Company name: 
+    = company.name
+  li.list-group-item 
+    | Owner: 
+    = current_user.name
+  li.list-group-item 
+    | Country: 
+    = company.country
+  li.list-group-item 
+    | Currency: 
+    = company.currency

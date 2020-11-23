@@ -20,7 +20,7 @@ class Transaction < ApplicationRecord
   private
 
   def year_of_transaction
-    if transaction_time >= 2.years.from_now
+    unless transaction_time >= 2.years.from_now
       errors.add(:transaction_time, 'is not valid. Set transaction in a time frame of two years from now')
     end
   end

@@ -1,21 +1,9 @@
 -if notice 
   #notice = notice
+= render 'info', company: @company
+ul.list-group
+  li.list-group-item.list-group-item-info Reports 
+  = render partial: 'companies/reports/report_by_year', collection: reports_by_year, as: :year
 = render 'routing', company: @company
-div
-  | Info:
-div 
-  | Name: 
-  = @company.name
-div
-  | Owner: 
-  = current_user.name
-div
-  | Currency: 
-  = @company.currency 
-.input-group.mb-3
-  .input-group-prepend
-    label Reports
-  .btn-group
-    =render partial: 'company/reports/report_by_year', collection: reports_by_year, as: :year
 
 

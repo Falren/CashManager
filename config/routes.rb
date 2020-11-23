@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :companies do
-    scope module: 'company' do
+    scope module: 'companies' do
       resources :transactions
       resources :reports, only: :index
     end

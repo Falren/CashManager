@@ -1,0 +1,15 @@
+Style/Documentation:
+  Enabled: false
+AllCops:
+  TargetRubyVersion: 2.7.1
+  Exclude:
+    - 'config/initializers/devise.rb'
+    - 'bin/**/*'
+    - 'db/**/*'
+    - 'log/**/*'
+    - 'script/**/*'
+    - 'spec/**/*'
+    - 'vendor/**/*'
+    - 'lib/tasks/*'
+    - 'node_modules/**/*'
+    - 'tmp/**/*'

@@ -5,7 +5,8 @@ class Company < ApplicationRecord
   has_many :transactions
 
   validates :country, presence: true
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true, allow_nil: true
+
   validate :student_required, on: :create
 
   private

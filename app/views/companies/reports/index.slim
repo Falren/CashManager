@@ -6,7 +6,8 @@
         =@company.name 
       h3  
         | Cash  management
-    .btn-group
+    ul.list-group.list-group-horizontal
+      li.list-group-item.list-group-item-dark Years
       = render partial: 'report_by_year', collection: reports_by_year, as: :year
     table.table.table-hover
       tr.table-info
