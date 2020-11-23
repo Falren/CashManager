@@ -8,20 +8,20 @@ html
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    nav.navbar.navbar-expand-lg.navbar-light.bg-light
+    nav.navbar.bg-light
       = link_to "CashManager", root_path, class: "nav-logo text-info"
-      ul.navbar-nav.mr-auto
+      ul.nav.justify-content-end
         -if current_user  
-          li.nav-item
-            = link_to 'Add an article', new_article_path, class: "nav-link text-info"
           li.nav-item
             = link_to 'Manage articles', articles_path, class: "nav-link text-info"
           li.nav-item
-        -else
-          .btn-group
-            = link_to 'Sign in', new_user_session_path, class: "btn btn-outline-info"
-            = link_to 'Sign up', new_user_registration_path, class: "btn btn-outline-info"
-      = image_tag(current_user.photo, size: '48', class: "rounded-circle") if current_user&.photo&.attached?
-      = link_to 'Log Out', destroy_user_session_path, method: :delete, class: "nav-link text-danger"
+            = image_tag(current_user.photo, size: '48', class: "rounded-circle border border-info") if current_user.photo.attached?
+          li.nav-item
+            = link_to 'Log Out', destroy_user_session_path, method: :delete, class: "nav-link text-danger"
+        -else 
+          li.nav-item
+            = link_to 'Sign in', new_user_session_path, class: "nav-link text-info"
+          li.nav-item
+            = link_to 'Sign up', new_user_registration_path, class: "nav-link text-info"
     = yield
 

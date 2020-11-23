@@ -1,9 +1,14 @@
 -if notice 
   #notice = notice
-= render 'info', company: @company
-ul.list-group
-  li.list-group-item.list-group-item-info Reports 
-  = render partial: 'companies/reports/report_by_year', collection: reports_by_year, as: :year
-= render 'routing', company: @company
+ 
+.content-container 
+  .content-wrapper
+    .row
+      = render 'info', company: @company
+    ul.list-group.list-group-horizontal
+      li.list-group-item.list-group-item-dark Reports
+      = render partial: 'companies/reports/report_by_year', collection: reports_by_year, as: :year
+    = render 'routing', company: @company
 
 
+  

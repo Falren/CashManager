@@ -6,7 +6,7 @@ module Companies
     before_action :articles, only: %i[new create]
 
     def index
-      @transactions = @company.transactions
+      @transactions = @company.transactions.order(created_at: :desc)
     end
 
     def new
@@ -25,7 +25,7 @@ module Companies
     private
 
     def articles
-      @articles = Article.order(create_at: :desc)
+      @articles = Article.order(created_at: :desc)
     end
 
     def find_company

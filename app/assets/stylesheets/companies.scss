@@ -1,3 +1,4 @@
+
 .basic-grid {
   display: grid;
   gap: 2rem;
@@ -5,7 +6,7 @@
   grid-template-rows: auto;
 }
 
-.basic-grid >.card {
+.basic-grid >.company_card {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -24,8 +25,8 @@
   background-repeat: no-repeat;
 }
 
-.basic-grid>.card:nth-child(1) {
-  background-color: #0062CC;
+.basic-grid>.company_card:nth-child(1) {
+  background-color: #6C757D;
 }
 
 .grid-wrapper {
@@ -34,12 +35,12 @@
   height: 100%;
 }
 
-.card:hover {
+.company_card:hover {
   box-shadow: rgba(2, 8, 20, 0.1) 0px 0.35em 1.175em, rgba(2, 8, 20, 0.08) 0px 0.175em 0.5em;
   transform: translateY(-3px) scale(1.1);
 }
 
-.card > a {
+.company_card > a {
   text-align: center;
   height: 100%;
   width: 100%;
@@ -47,6 +48,6 @@
   text-decoration: none;
 }
 
-.card > a:hover {
+.company_card > a:hover {
   color: aliceblue;
 }

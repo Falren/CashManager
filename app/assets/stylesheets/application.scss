@@ -19,3 +19,24 @@
 * {
   font-family: Verdana, Arial, Tahoma, Serif;
 }
+
+ul {
+  list-style: none;
+}
+
+.content-wrapper {
+  display: flex;
+  width: 80%;
+  height: 100%;
+  margin-top: 50px;
+  justify-content: center;
+}
+
+.list-wrapper {
+  width: 70%;
+}
+.list-wrapper>.list-group > .list-group-item {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}

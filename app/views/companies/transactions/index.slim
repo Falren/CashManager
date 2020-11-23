@@ -1,3 +1,8 @@
-h2 Transactions: 
-ol = render @transactions
-= link_to 'New Transaction', new_company_transaction_path
+.content-container 
+  .content-wrapper
+    .list-wrapper
+      ul.list-group 
+        li.list-group-item.list-group-item-info Transactions
+        = link_to '+', new_company_transaction_path, class: 'list-group-item d-flex justify-content-center text-secondary font-weight-bold'
+        = render @transactions
+

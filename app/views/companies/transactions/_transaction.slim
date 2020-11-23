@@ -1,1 +1,9 @@
-li =transaction.amount
+li.list-group-item 
+  div
+    | Amount: 
+    = transaction.amount
+  div
+    = transaction.status.capitalize
+  div
+    | Date: 
+    = transaction.transaction_time.to_formatted_s(:db)

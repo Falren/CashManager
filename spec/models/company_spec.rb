@@ -9,7 +9,7 @@ RSpec.describe Company, type: :model do
   context 'validation tests' do
     describe 'it does not create a user with status teacher' do
       subject { company.save }
-      it { is_expected.to eq(false) }
+      it { is_expected.to eq(false)}
     end
     it 'should not create a company without a name' do
       company.name = nil
