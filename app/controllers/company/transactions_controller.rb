@@ -1,11 +1,11 @@
 class Company::TransactionsController < ApplicationController
   before_action :set_company
   before_action :set_articles, only: %i[new create]
-  def index 
+  def index
     @transactions = @company.transactions
   end
 
-  def new 
+  def new
     @transaction = @company.transactions.new
     @articles = Article.all
   end
@@ -14,7 +14,7 @@ class Company::TransactionsController < ApplicationController
     @transaction = @company.transactions.new(transaction_params)
     if @transaction.save
       redirect_to root_path
-    else 
+    else
       render :new
     end
   end

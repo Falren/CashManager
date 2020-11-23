@@ -1,5 +1,4 @@
 module Company::ReportHelper
-
   def monthly_cash
     @monthly_cash ||= begin
       init_cash = initial_cash(@year)
@@ -37,11 +36,11 @@ module Company::ReportHelper
   end
 
   def cash_by_type(type)
-    @report_data.send(type).group_by(&:name).inject({}) { |h, (gr, tra)| h[gr] = tra.group_by(&:month); h }
+    @report_data.send(type).group_by(&:name).each_with_object({}) { |(gr, tra), h| h[gr] = tra.group_by(&:month); }
   end
 
   def reports_by_year
-    @reports_by_year ||= begin 
+    @reports_by_year ||= begin
       year = @company.created_at.year
       (year..year + 2)
     end

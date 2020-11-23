@@ -4,7 +4,7 @@ RSpec.describe User, type: :model do
   let(:user) { build(:user) }
   context 'validation tests' do
     describe 'user create' do
-      subject {user.save } 
+      subject { user.save }
       it { is_expected.to eq(true) }
     end
     it 'validates presence of name' do
@@ -26,7 +26,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe 'User has many companies' do 
+  describe 'User has many companies' do
     it { expect(User.reflect_on_association(:companies).macro).to eq(:has_many) }
   end
 end

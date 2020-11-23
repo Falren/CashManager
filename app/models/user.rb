@@ -2,7 +2,7 @@ class User < ApplicationRecord
   enum status: %i[teacher student]
 
   devise :database_authenticatable, :registerable,
-  :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable
 
   has_one_attached :photo
   has_many :companies

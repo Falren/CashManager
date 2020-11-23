@@ -1,11 +1,10 @@
 class CompaniesController < ApplicationController
-
   before_action :set_company, only: %i[show edit update destroy]
 
   def index
-    @companies = current_user.companies.all if current_user 
+    @companies = current_user.companies.all if current_user
   end
-  
+
   def show; end
 
   def new; end
@@ -31,7 +30,7 @@ class CompaniesController < ApplicationController
   def destroy
     if @company.destroy
       redirect_to companies_path, notice: t('.success')
-    else 
+    else
       render :show
     end
   end

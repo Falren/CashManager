@@ -1,8 +1,7 @@
 class ArticlesController < ApplicationController
- 
   before_action :set_article, except: %i[new create index]
 
-  def index 
+  def index
     @articles = Article.all
   end
 
@@ -11,7 +10,7 @@ class ArticlesController < ApplicationController
   def create
     if @article.save
       redirect_to root_path
-    else 
+    else
       render :show
     end
   end
@@ -21,7 +20,7 @@ class ArticlesController < ApplicationController
   def update
     if @article.update
       redirect_to root_path
-    else 
+    else
       render :edit
     end
   end
@@ -29,14 +28,14 @@ class ArticlesController < ApplicationController
   def delete
     if @article.delete
       redirect_to root_path
-    else 
+    else
       render 'companies/index'
     end
   end
 
   private
- 
-  def set_article 
+
+  def set_article
     @article = Article.find(params[:id])
   end
 
