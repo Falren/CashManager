@@ -1,0 +1,4 @@
+div = link_to 'Delete', company_path(company), method: :delete
+div = link_to 'Edit', edit_company_path(company)
+div = link_to 'Back', companies_path
+div = link_to 'Transactions', company_transactions_path(company.id)
