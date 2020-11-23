@@ -1,4 +1,4 @@
 tr 
   td = name
   - 1.upto(12) do |col|
-    td = transactions&.dig(col)&.sum(&:total) || '-'
+    td = transactions&.dig(col)&.sum(&:total) || ''

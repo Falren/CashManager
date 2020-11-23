@@ -1,0 +1,6 @@
+- 12.times do |m| 
+  td
+    -if m.zero?
+      = initial_cash(@year.to_i)
+    -else
+      = monthly_cash[m - 1]

@@ -1,9 +1,7 @@
 .content-container
   .form-container
     .btn-group
-      = link_to '2020', company_reports_path(@company.id, year: 2020), class: "btn btn-info"
-      = link_to '2021', company_reports_path(@company.id, year: 2021), class: "btn btn-info"
-      = link_to '2022', company_reports_path(@company.id, year: 2022), class: "btn btn-info"
+      = render partial: 'report_by_year', collection: reports_by_year, as: :year
     h1
       | Company 
       =@company.name
@@ -14,30 +12,20 @@
         td 
           | Year 
           = @year  
-        -I18n.t("date.abbr_month_names")[1..12].each do |month|
-          td = month
+        = render 'months'
       tr
         td Initial cash in bank
-        - 12.times do |m| #partial 
-          td
-            -if m.zero?
-              = initial_cash(@year.to_i)
-            -else
-              = monthly_cash[m - 1]
+        = render 'init_cash'
       tr 
         td Cash In
-        - 1.upto(12) do |m|  #partial
-          td =cash_in[m] && cash_in[m]
-        - @report_data.in.group_by(&:name).inject({}) { |h, (gr, tra)| h[gr] = tra.group_by(&:month); h }.each do |name, transactions| #controller
-          = render 'cash', name: name, transactions: transactions
+        = render 'cash_in'
+      - cash_by_type(:in).each do |name, transactions| 
+        =render 'cash', name: name, transactions: transactions
       tr
         td Cash Out
-        - 1.upto(12) do |m| # partial
-          td=cash_out && cash_out[m]
-      - @report_data.out.group_by(&:name).inject({}) { |h, (gr, tra)| h[gr] = tra.group_by(&:month); h }.each do |name, transactions| #controller
+        = render 'cash_out'
+      - cash_by_type(:out).each do |name, transactions| 
         =render 'cash', name: name, transactions: transactions
       tr
         td Cash End
-        - monthly_cash.each do |end_cash| #partial
-          td
-             = end_cash
+        = render 'cash_end'

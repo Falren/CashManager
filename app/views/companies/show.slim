@@ -22,7 +22,6 @@ div = link_to 'Transactions', company_transactions_path(@company.id)
   .input-group-prepend
     label Reports
   .btn-group
-    = link_to '2020', company_reports_path(@company.id, year: 2020), class: "btn btn-info"
-    = link_to '2021', company_reports_path(@company.id, year: 2021), class: "btn btn-info"
-    = link_to '2022', company_reports_path(@company.id, year: 2022), class: "btn btn-info"
+    =render partial: 'company/reports/report_by_year', collection: reports_by_year, as: :year
+
 
