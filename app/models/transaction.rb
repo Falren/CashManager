@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Transaction < ApplicationRecord
+  attribute :transaction_time, :datetime, default: proc { Time.now }
   enum status: %i[in out]
   belongs_to :company
   belongs_to :article
@@ -20,7 +21,7 @@ class Transaction < ApplicationRecord
 
   def year_of_transaction
     if transaction_time >= 2.years.from_now
-      errors.add(:transaction_time, 'Transactions can be made only in two-years period')
+      errors.add(:transaction_time, 'is not valid. Set transaction in a time frame of two years from now')
     end
   end
 end

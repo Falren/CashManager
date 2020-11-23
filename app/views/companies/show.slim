@@ -1,3 +1,6 @@
+-if notice 
+  #notice = notice
+= render 'routing', company: @company
 div
   | Info:
 div 
@@ -9,12 +12,6 @@ div
 div
   | Currency: 
   = @company.currency 
-
-
-
--if notice 
-  #notice = notice
-= render 'routing', company: @company
 .input-group.mb-3
   .input-group-prepend
     label Reports

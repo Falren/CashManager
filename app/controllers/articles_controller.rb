@@ -2,7 +2,7 @@
 
 class ArticlesController < ApplicationController
   before_action :set_article, except: %i[new create index]
-
+  before_action :article, only: %i[new create]
   def index
     @articles = Article.all
   end

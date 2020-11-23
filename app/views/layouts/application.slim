@@ -8,16 +8,20 @@ html
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    nav.navbar.navbar-light
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light
       = link_to "CashManager", root_path, class: "nav-logo text-info"
-      -if current_user 
-        .btn-group
-          = link_to '+ Article', new_article_path, class: "btn btn-info"
-          = link_to 'Manage Articles', articles_path, class: "btn btn-info"
-        = link_to 'Log Out', destroy_user_session_path, method: :delete, class: "btn btn-outline-danger"
-      -else
-        .btn-group
-          = link_to 'Sign in', new_user_session_path, class: "btn btn-outline-info"
-          = link_to 'Sign up', new_user_registration_path, class: "btn btn-outline-info"
+      ul.navbar-nav.mr-auto
+        -if current_user  
+          li.nav-item
+            = link_to 'Add an article', new_article_path, class: "nav-link text-info"
+          li.nav-item
+            = link_to 'Manage articles', articles_path, class: "nav-link text-info"
+          li.nav-item
+        -else
+          .btn-group
+            = link_to 'Sign in', new_user_session_path, class: "btn btn-outline-info"
+            = link_to 'Sign up', new_user_registration_path, class: "btn btn-outline-info"
+      = image_tag(current_user.photo, size: '48', class: "rounded-circle") if current_user&.photo&.attached?
+      = link_to 'Log Out', destroy_user_session_path, method: :delete, class: "nav-link text-danger"
     = yield
 

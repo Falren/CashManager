@@ -1,31 +1,27 @@
 .content-container
-  .form-container
+  .report-container
+    .company-info
+      h3
+        | Company: 
+        =@company.name 
+      h3  
+        | Cash  management
     .btn-group
       = render partial: 'report_by_year', collection: reports_by_year, as: :year
-    h1
-      | Company 
-      =@company.name
-    table
-      tr
-        th Cash management
-      tr
-        td 
-          | Year 
-          = @year  
+    table.table.table-hover
+      tr.table-info
         = render 'months'
-      tr
-        td Initial cash in bank
+      tr.table-light
         = render 'init_cash'
-      tr 
-        td Cash In
+      tr.table-info
         = render 'cash_in'
       - cash_by_type(:in).each do |name, transactions| 
-        =render 'cash', name: name, transactions: transactions
-      tr
-        td Cash Out
+        tr.table-light
+          =render 'cash', name: name, transactions: transactions
+      tr.table-info
         = render 'cash_out'
       - cash_by_type(:out).each do |name, transactions| 
-        =render 'cash', name: name, transactions: transactions
-      tr
-        td Cash End
+        tr.table-light
+          =render 'cash', name: name, transactions: transactions
+      tr.table-info
         = render 'cash_end'

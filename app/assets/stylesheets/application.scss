@@ -14,5 +14,8 @@
  *= require_self
  */
  @import "bootstrap";
- @import "./form"
+ @import "./form";
 
+* {
+  font-family: Verdana, Arial, Tahoma, Serif;
+}

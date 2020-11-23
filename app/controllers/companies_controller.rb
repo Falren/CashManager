@@ -2,9 +2,9 @@
 
 class CompaniesController < ApplicationController
   before_action :set_company, only: %i[show edit update destroy]
-
+  before_action :company, only: %i[new create]
   def index
-    @companies = current_user.companies.all if current_user
+    @companies = current_user.companies.order(created_at: :desc) if current_user
   end
 
   def show; end
@@ -15,7 +15,7 @@ class CompaniesController < ApplicationController
 
   def create
     if company.save
-      redirect_to companies_path, notice: t('.success')
+      redirect_to companies_path
     else
       render :new
     end
@@ -23,7 +23,7 @@ class CompaniesController < ApplicationController
 
   def update
     if company.update(company_params)
-      redirect_to company, notice: t('.success')
+      redirect_to company
     else
       render :edit
     end
@@ -31,7 +31,7 @@ class CompaniesController < ApplicationController
 
   def destroy
     if @company.destroy
-      redirect_to companies_path, notice: t('.success')
+      redirect_to companies_path
     else
       render :show
     end
