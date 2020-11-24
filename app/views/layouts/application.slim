@@ -15,6 +15,8 @@ html
           li.nav-item
             = link_to 'Manage articles', articles_path, class: "nav-link text-info"
           li.nav-item
+            = link_to 'Edit profile', edit_user_registration_path, class: "nav-link text-info"
+          li.nav-item
             = image_tag(current_user.photo, size: '48', class: "rounded-circle border border-info") if current_user.photo.attached?
           li.nav-item
             = link_to 'Log Out', destroy_user_session_path, method: :delete, class: "nav-link text-danger"

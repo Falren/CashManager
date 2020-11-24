@@ -2,6 +2,6 @@
   .content-wrapper
     .list-wrapper 
       ul.list-group 
-        li.list-group-item.list-group-item-action.list-group-item-info Articles
+        li.list-group-item.list-group-item-info Articles
         = link_to '+', new_article_path, class: 'list-group-item d-flex justify-content-center text-secondary font-weight-bold'
         = render @articles
