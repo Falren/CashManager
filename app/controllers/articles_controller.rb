@@ -12,9 +12,9 @@ class ArticlesController < ApplicationController
   def create
     @article.assign_attributes(article_params)
     if @article.save
-      redirect_to root_path
+      redirect_to(root_path)
     else
-      render :show
+      render(:show)
     end
   end
 
@@ -22,17 +22,17 @@ class ArticlesController < ApplicationController
 
   def update
     if @article.update(article_params)
-      redirect_to root_path
+      redirect_to(root_path)
     else
-      render :edit
+      render(:edit)
     end
   end
 
   def destroy
     if @article.destroy
-      redirect_to root_path
+      redirect_to(root_path)
     else
-      redirect_to articles_path
+      redirect_to(articles_path)
     end
   end
 

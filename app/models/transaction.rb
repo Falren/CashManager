@@ -10,18 +10,22 @@ class Transaction < ApplicationRecord
   validates :transaction_time, presence: true
   validate :year_of_transaction, on: :create
 
-  scope :report_by_year, lambda { |year|
-    joins(:article)
-      .select('status, articles.name, (EXTRACT(MONTH FROM transaction_time))::integer as month, sum(amount) as total')
-      .where('EXTRACT(YEAR FROM transaction_time)::integer = ?', year)
-      .group('status, articles.name, month')
-  }
+  scope :report_by_year,
+        lambda { |year|
+          joins(:article)
+            .select('
+              status,
+              articles.name,
+              (EXTRACT(MONTH FROM transaction_time))::integer as month,
+              sum(amount) as total
+              ')
+            .where('EXTRACT(YEAR FROM transaction_time)::integer = ?', year)
+            .group('status, articles.name, month')
+        }
 
   private
 
   def year_of_transaction
-    if transaction_time >= 2.years.from_now
-      errors.add(:transaction_time, 'is not valid. Make a transaction in a time frame of two years from now')
-    end
+    errors.add(:transaction_time, 'shoulde be set before two years from now') if transaction_time >= 2.years.from_now
   end
 end

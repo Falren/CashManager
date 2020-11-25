@@ -2,9 +2,9 @@
 
 Rails.application.routes.draw do
   devise_for :users
-  resources :companies do
+  resources :companies, except: :destroy do
     scope module: 'companies' do
-      resources :transactions
+      resources :transactions, except: :destroy
       resources :reports, only: :index
     end
   end

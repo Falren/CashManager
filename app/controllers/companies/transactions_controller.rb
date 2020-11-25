@@ -16,9 +16,9 @@ module Companies
     def create
       @transaction = @company.transactions.new(transaction_params)
       if @transaction.save
-        redirect_to root_path
+        redirect_to(root_path)
       else
-        render :new
+        render(:new)
       end
     end
 

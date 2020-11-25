@@ -1,28 +1,12 @@
-.content-container
-  .report-container
-    .company-info
-      h3
-        | Company: 
-        =@company.name 
-      h3  
-        | Cash  management
-    ul.list-group.list-group-horizontal
-      li.list-group-item.list-group-item-dark Years
-      = render partial: 'report_by_year', collection: reports_by_year, as: :year
-    table.table.table-hover
-      tr.table-info
-        = render 'months'
-      tr.table-light
-        = render 'init_cash'
-      tr.table-info
-        = render 'cash_in'
-      - cash_by_type(:in).each do |name, transactions| 
-        tr.table-light
-          =render 'cash', name: name, transactions: transactions
-      tr.table-info
-        = render 'cash_out'
-      - cash_by_type(:out).each do |name, transactions| 
-        tr.table-light
-          =render 'cash', name: name, transactions: transactions
-      tr.table-info
-        = render 'cash_end'
+
+ul.list-group.list-group-horizontal
+  li.list-group-item.list-group-item-dark Years
+  = render partial: 'report_by_year', collection: reports_by_year, as: :year
+= react_component( 'CashManager', {\
+  initialCash: initial_cash(@year.to_i),\
+  cashIn: cash_in,\
+  cashOut: cash_out,\
+  monthlyCashOut: monthly_cash_out,\
+  monthlyCashIn: monthly_cash_in,\
+  monthlyCash: monthly_cash\
+  }) 

@@ -17,25 +17,25 @@ class CompaniesController < ApplicationController
   def create
     @company.assign_attributes(company_params)
     if @company.save
-      redirect_to companies_path
+      redirect_to(companies_path)
     else
-      render :new
+      render(:new)
     end
   end
 
   def update
     if company.update(company_params)
-      redirect_to company
+      redirect_to(company)
     else
-      render :edit
+      render(:edit)
     end
   end
 
   def destroy
     if @company.destroy
-      redirect_to companies_path
+      redirect_to(companies_path)
     else
-      redirect_to root_path
+      redirect_to(root_path)
     end
   end
 
