@@ -13,12 +13,8 @@ class Transaction < ApplicationRecord
   scope :report_by_year,
         lambda { |year|
           joins(:article)
-            .select('
-              status,
-              articles.name,
-              (EXTRACT(MONTH FROM transaction_time))::integer as month,
-              sum(amount) as total
-              ')
+            .select('status, articles.name, (EXTRACT(MONTH FROM transaction_time))::integer as month,
+                    sum(amount) as total')
             .where('EXTRACT(YEAR FROM transaction_time)::integer = ?', year)
             .group('status, articles.name, month')
         }

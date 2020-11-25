@@ -10,15 +10,16 @@ module Companies
         end
     end
 
+    def transaction_time_range(year)
+      prev_year = Time.new(year.to_i - 1)
+      @company.transactions.where(transaction_time: @company.created_at.beginning_of_year...prev_year.end_of_year)
+    end
+
     def initial_cash(year)
       @initial_cash ||= begin
         @company.money if @company.created_at.year == year
-        prev_year = Time.new(year.to_i - 1)
-        transaction_time_range = @company
-                                 .transactions
-                                 .where(transaction_time: @company.created_at.beginning_of_year...prev_year.end_of_year)
-        sum_in = transaction_time_range.in.sum(&:amount)
-        sum_out = transaction_time_range.out.sum(&:amount)
+        sum_in = transaction_time_range(year).in.sum(&:amount)
+        sum_out = transaction_time_range(year).out.sum(&:amount)
         company_cash + (sum_in - sum_out)
       end
     end
