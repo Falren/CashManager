@@ -3,10 +3,10 @@ ul.list-group.list-group-horizontal
   li.list-group-item.list-group-item-dark Years
   = render partial: 'report_by_year', collection: reports_by_year, as: :year
 = react_component( 'CashManager', {\
-  initialCash: initial_cash(@year.to_i),\
+  initialCash: initial_cash(params[:year]),\
   cashIn: cash_in,\
   cashOut: cash_out,\
   monthlyCashOut: monthly_cash_out,\
   monthlyCashIn: monthly_cash_in,\
   monthlyCash: monthly_cash\
-  }) 
+  })

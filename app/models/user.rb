@@ -10,7 +10,6 @@ class User < ApplicationRecord
          :validatable
   has_one_attached :photo
   has_many :companies
-  validates :name, presence: true
-  validates :surname, presence: true
-  validates :status, presence: true
+
+  validates :name, :surname, :status, presence: true
 end

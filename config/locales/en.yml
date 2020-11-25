@@ -30,14 +30,18 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  companies:
-    create:
-      success: Company has been successfully created.
+  activerecord:
+    errors: 
+      models: 
+        transaction: 
+         attributes: 
+          transaction_time: 
+            invalid: should be set before two years from now
 en:
-  companies:
-    delete:
-      success: Company has been successfully deleted.
-en:
-  companies:
-    update:
-      success: Company has been successfully updated.
+  activerecord:
+    errors: 
+      models: 
+        company: 
+         attributes: 
+          user_id: 
+            invalid: should be a student

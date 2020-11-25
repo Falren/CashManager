@@ -3,11 +3,11 @@
 class Transaction < ApplicationRecord
   attribute :transaction_time, :datetime, default: proc { Time.now }
   enum status: %i[in out]
+
   belongs_to :company
   belongs_to :article
 
-  validates :amount, presence: true
-  validates :transaction_time, presence: true
+  validates :amount, :transaction_time, presence: true
   validate :year_of_transaction, on: :create
 
   scope :report_by_year,
@@ -22,6 +22,6 @@ class Transaction < ApplicationRecord
   private
 
   def year_of_transaction
-    errors.add(:transaction_time, 'shoulde be set before two years from now') if transaction_time >= 2.years.from_now
+    errors.add(:transaction_time) if transaction_time >= 2.years.from_now
   end
 end
