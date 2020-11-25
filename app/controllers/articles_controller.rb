@@ -14,7 +14,7 @@ class ArticlesController < ApplicationController
     if @article.save
       redirect_to(root_path)
     else
-      render(:show)
+      render(:new)
     end
   end
 

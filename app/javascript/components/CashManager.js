@@ -53,7 +53,7 @@ class CashManager extends React.Component {
             </tr>
             {
               Object.keys(monthlyCashIn).map((key) => {
-                return  <tr>
+                return  <tr key={key}>
                           <td key={key} colSpan='3'>{key}</td>
                           { mothlyRange.map((_val, month) => {
                             return  <td key={month + key}>{cashInRow(key, month)}</td>
@@ -67,7 +67,7 @@ class CashManager extends React.Component {
             </tr>
             {
               Object.keys(monthlyCashOut).map((key) => {
-                return  <tr>
+                return  <tr key={key}>
                           <td key={key} colSpan='3'>{key}</td>
                           { mothlyRange.map((_val, month) => {
                             return  <td key={month + key}>{cashOutRow(key, month)}</td>
